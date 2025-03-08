@@ -1,6 +1,6 @@
 # mini-project_OS
 
-# Projedct Structure
+## Projedct Structure
 
 ``` bash
 File-Directory-Manager/
