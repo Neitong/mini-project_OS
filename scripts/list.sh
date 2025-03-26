@@ -1,10 +1,14 @@
 #!/bin/bash
 
-read -p "Enter the directory path: " dir
+# Source the log script
+source "$(dirname "$0")/../log.sh"
 
-if [ -d "$dir" ]; then
-    echo "Listing files and directories in: $dir"
-    ls -lah "$dir"
+read -p "Enter the directory or file path: " path
+
+if [ -e "$path" ]; then
+    ls -lah "$path"
+    log_action "Listed contents of: $path"
 else
-    echo "Error: Directory does not exist."
+    echo "Error: Path does not exist."
+    log_action "Failed to list: $path (Path does not exist)"
 fi

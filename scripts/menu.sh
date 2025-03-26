@@ -1,4 +1,4 @@
-#!/bin/bash
+LOG_FILE="./script.log"
 
 while true; do
     echo "=============================="
@@ -14,6 +14,8 @@ while true; do
     echo "=============================="
     read -p "Choose an option (1-7): " choice
 
+    echo "$(date): User selected option $choice" >> "$LOG_FILE"
+
     case $choice in
         1) bash scripts/list.sh ;;
         2) bash scripts/backup.sh ;;
@@ -21,7 +23,7 @@ while true; do
         4) bash scripts/disk_usage.sh ;;
         5) bash scripts/search.sh ;;
         6) bash scripts/compress.sh ;;
-        7) echo "Exiting..."; exit 0 ;;
-        *) echo "Invalid option, please try again." ;;
+        7) echo "Exiting..."; echo "$(date): Exiting the program" >> "$LOG_FILE"; exit 0 ;;
+        *) echo "Invalid option, please try again." | tee -a "$LOG_FILE" ;;
     esac
 done
